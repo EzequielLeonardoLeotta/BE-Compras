@@ -24,6 +24,7 @@ const router = express.Router()
  *         - stock
  *         - vendedor
  *         - metodosDePago
+ *         - isActivo
  *       properties:
  *         nombre:
  *           type: string
@@ -53,6 +54,9 @@ const router = express.Router()
  *             credito:
  *               type: boolean
  *               description: Permite abonar el producto con tarjeta de credito
+ *         isActivo:
+ *           type: bolean
+ *           description: Activa o desactiva el producto
  *       example:
  *        nombre: Laptop Lenovo
  *        precio: 200000
@@ -60,6 +64,7 @@ const router = express.Router()
  *        stock: 5
  *        vendedor: lenovo
  *        metodosDePago: {debito: true, credito: false}
+ *        isActivo: true
  */
 //#endregion
 
@@ -68,7 +73,7 @@ const router = express.Router()
  * @swagger
  * /api/v1/producto:
  *  get:
- *    summary: Trae todos los productos que son posibles de comprar (con stock mayor a 0).
+ *    summary: Trae todos los productos que son posibles de comprar (con stock mayor a 0 y activos de parte del vendedor).
  *    tags: [Producto]
  *    responses:
  *      200:
