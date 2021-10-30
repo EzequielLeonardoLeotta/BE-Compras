@@ -6,6 +6,7 @@ interface IMetodosDePago {
 }
 
 export interface IProducto extends Document {
+  id: String,
   nombre: String,
   precio: Number,
   categoria: String,
@@ -16,6 +17,7 @@ export interface IProducto extends Document {
 };
 
 export const ProductoSchema = new Schema({
+  id: String,
   nombre: String,
   precio: Number,
   categoria: String,

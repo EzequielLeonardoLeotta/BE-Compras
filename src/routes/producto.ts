@@ -1,5 +1,5 @@
 import express from 'express'
-import { findProductos } from '../controllers/producto'
+import { findProductos, updateProducto } from '../controllers/producto'
 import healthController from '../controllers/health'
 
 const router = express.Router()
@@ -18,6 +18,7 @@ const router = express.Router()
  *     Producto:
  *       type: object
  *       required:
+ *         - id
  *         - nombre
  *         - precio
  *         - categoria
@@ -26,6 +27,9 @@ const router = express.Router()
  *         - metodosDePago
  *         - isActivo
  *       properties:
+ *         id:
+ *           type: string
+ *           description: Id del producto
  *         nombre:
  *           type: string
  *           description: Nombre del producto
@@ -58,6 +62,7 @@ const router = express.Router()
  *           type: bolean
  *           description: Activa o desactiva el producto
  *       example:
+ *        id: asd6565a1sdas61ads
  *        nombre: Laptop Lenovo
  *        precio: 200000
  *        categoria: Notebook
@@ -87,6 +92,31 @@ const router = express.Router()
  */
 //#endregion
 router.get('/api/v1/producto', findProductos)
+
+//hacer put producto y tiene que pegarle pedido
+//#region Swagger updateProducto
+/**
+ * @swagger
+ * /api/v1/producto:
+ *   put:
+ *     summary: Actualiza un producto
+ *     tags: [Producto]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Producto'
+ *     responses:
+ *       200:
+ *         description: El producto se actualizo correctamente
+ *       404:
+ *         description: El producto no existe
+ *       500:
+ *         description: No se pudo actualizar el producto
+ */
+//#endregion
+router.put('/api/v1/producto', updateProducto)
 
 router.get('/health', healthController.healthCheck)
 
