@@ -17,3 +17,8 @@ export const savePedidoService = async (req: Request, res: Response) => {
     res.status(500).send('Error: No se pudo guardar el usuario')
   }
 }
+
+export const findPedidosByCompradorService = async (req: Request, res: Response) => {
+  const pedidos = await Pedido.find({ comprador: req.params.comprador }).exec()
+  return res.status(200).send(pedidos)
+}

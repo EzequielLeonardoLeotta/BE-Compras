@@ -1,5 +1,5 @@
 import express from 'express'
-import { savePedido } from '../controllers/pedido'
+import { savePedido, findPedidosByComprador } from '../controllers/pedido'
 
 const router = express.Router()
 
@@ -55,7 +55,7 @@ const router = express.Router()
  */
 //#endregion
 
-//#region Swagger saveUsuario
+//#region Swagger savePedido
 /**
  * @swagger
  * /api/v1/pedido:
@@ -76,5 +76,32 @@ const router = express.Router()
  */
 //#endregion
 router.post('/api/v1/pedido', savePedido)
+
+//#region Swagger findProductos
+/**
+ * @swagger
+ * /api/v1/pedido/{comprador}:
+ *  get:
+ *    summary: Trae todos los pedidos del usuario.
+ *    tags: [Pedido]
+ *    parameters:
+ *      - in: path
+ *        name: comprador
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Nombre de usuario del comprador
+ *    responses:
+ *      200:
+ *        description: Pedidos obtenidos
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/Pedido'
+ */
+//#endregion
+router.get('/api/v1/pedido/:comprador', findPedidosByComprador)
 
 export default router
