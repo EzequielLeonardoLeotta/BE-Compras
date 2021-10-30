@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { IProducto } from '../models/pedido'
 import Producto from '../models/producto'
 
 //no traer los que tengan stock en 0
@@ -31,5 +32,27 @@ export const updateProductoService = async (req: Request, res: Response) => {
     } else res.status(404).send('Error: El producto no existe')
   } catch (error) {
     res.status(500).send('Error: No se pudo actualizar el producto')
+  }
+}
+
+export const updateStock = async (productoReq: IProducto) => {
+  try {
+    const idProducto = productoReq.idProducto
+    const productoWanted = await Producto.findById(idProducto)
+
+    if (productoWanted) {
+      //@ts-ignore
+      const stockFinal = productoWanted.stock - productoReq.cantidad
+      const isActivo = stockFinal > 0 //Si es mayor a 0 sigue activo, sino es porque se vendio todo el stock 
+
+      const filter = { _id: idProducto }
+      const update = {
+        stock: stockFinal,
+        isActivo: isActivo
+      }
+
+      await Producto.findOneAndUpdate(filter, update)
+    } 
+  } catch (error) {
   }
 }

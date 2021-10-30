@@ -28,18 +28,11 @@ const router = express.Router()
  *           type: string
  *           description: Nombre del vendedor
  *         productos:
- *           type: object
+ *           type: array
  *           description: Productos incluidos en el pedido
- *           required:
- *             - idProducto
- *             - cantidad
- *           properties:
- *             idProducto:
- *               type: string
- *               description: Id del producto
- *             cantidad:
- *               type: number
- *               description: Cantidad del producto solicitado
+ *           items:
+ *              idProducto: string
+ *              cantidad: number
  *         estado:
  *           type: string
  *           description: Estado del pedido
@@ -49,7 +42,7 @@ const router = express.Router()
  *       example:
  *        comprador: ma_galperion
  *        vendedor: eze_leotta
- *        productos: {idProducto: asd64a6s5d46as54dasd, cantidad: 5}
+ *        productos: [{idProducto: asd64a6s5d46as54dasd, cantidad: 5}]
  *        estado: En proceso
  *        fechaDeCreacion: Fri Oct 29 2021 21:14:50 GMT-0300
  */

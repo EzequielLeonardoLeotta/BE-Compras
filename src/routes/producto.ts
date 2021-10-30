@@ -93,7 +93,6 @@ const router = express.Router()
 //#endregion
 router.get('/api/v1/producto', findProductos)
 
-//hacer put producto y tiene que pegarle pedido
 //#region Swagger updateProducto
 /**
  * @swagger
