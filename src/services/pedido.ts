@@ -1,7 +1,7 @@
-import { request, Request, Response } from 'express'
+import { Request, Response } from 'express'
 import Pedido from '../models/pedido'
 import { IProducto } from '../models/pedido'
-import { updateProductoService, updateStock } from './producto'
+import { updateStock } from './producto'
 
 // estado: string. Lo agrega el back end además del array de productos (En proceso, Cancelado, Despachado, Entregado). Actualiza el stock de los productos. fechaDeCreacion: DateTime. Por cada venta pegarle al PUT: producto y actualizar el isVendido a true
 // POST: pedido(comprador: string, vendedor: string, Productos[{idProducto: string, cantidad: number}]) => void
@@ -19,7 +19,7 @@ export const savePedidoService = async (req: Request, res: Response) => {
     await pedido.save()
     return res.status(200).send('Pedido generado correctamente')
   } catch (error) {
-    res.status(500).send('Error: No se pudo guardar el usuario')
+    res.status(500).send('Error: No se pudo guardar el pedido')
   }
 }
 

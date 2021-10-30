@@ -1,6 +1,7 @@
 import express from 'express';
 import routesProducto from '../routes/producto';
 import routesPedido from '../routes/pedido';
+import routesReclamo from '../routes/reclamo';
 import cors from 'cors';
 import { dbConnection }  from '../database/config';
 
@@ -20,6 +21,7 @@ server.get('/', (_, res) => res.send('be-compras is up!'));
 server.use(cors());
 server.use('/', routesProducto);
 server.use('/', routesPedido);
+server.use('/', routesReclamo);
 server.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 export default server;
