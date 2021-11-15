@@ -30,10 +30,14 @@ const router = express.Router()
  *         comentario:
  *           type: string
  *           description: Comentario sobre la denuncia
+ *         estado:
+ *           type: string
+ *           description: Estado de la denuncia
  *       example:
  *        idProducto: asd6565a1sdas61ads
  *        categoria: fraude
  *        comentario: el producto que intenta vender es una estafa
+ *        estado: A resolver
  */
 //#endregion
 
